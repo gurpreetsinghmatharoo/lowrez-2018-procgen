@@ -31,7 +31,7 @@ if (argument_count==1){
 					//Add grid and populate it
 					var grid_arr = grid_init(_x + X*DIVISION, _y + Y*DIVISION, DIVISION, DIVISION, SIZE);
 					grid_populate(grid_arr, PL[cell], cell);
-					_grid[# X, Y] = grid_arr; //Debug
+					//_grid[# X, Y] = grid_arr; //Debug
 					
 					//End
 					break;
@@ -98,9 +98,9 @@ else{
 							switch(type){
 								//House
 								case P.HOUSE:
-									var xAdd=0, yAdd=0;
-									if (irandom(1)) xAdd = (w+2) * choose(-1, 1);
-									else yAdd = (h+2) * choose(-1, 1);
+									var xAdd=0, yAdd=0, marg=PM[type];
+									if (irandom(1)) xAdd = (w+marg) * choose(-1, 1);
+									else yAdd = (h+marg) * choose(-1, 1);
 									
 									placeable_place(_grid, type, X+xAdd, Y+yAdd, count);
 								break;
@@ -117,4 +117,4 @@ else{
 }
 
 //Destroy
-//ds_grid_destroy(_grid); Debug
+ds_grid_destroy(_grid);

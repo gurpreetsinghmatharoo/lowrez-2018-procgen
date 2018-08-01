@@ -17,4 +17,7 @@ var gH = _h div _cellSize;
 var grid = ds_grid_create(gW, gH);
 ds_grid_clear(grid, A.EMPTY);
 
+//Generated instance
+instance_create_layer(_x, _y, "Manager", oGenerated);
+
 return [grid, _x, _y];

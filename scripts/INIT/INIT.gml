@@ -1,5 +1,12 @@
 gml_pragma("global", "INIT()");
 
+#region Main
+//Functions
+#macro log show_debug_message
+#endregion
+
+
+#region Proc Gen
 //Array contents
 enum pr{
 	grid, x, y
@@ -7,9 +14,9 @@ enum pr{
 
 /// Proc Gen
 //Properties
-#macro AREA 1024
-#macro DIVISION 256
-#macro SIZE 8
+#macro AREA 2048
+#macro DIVISION 512
+#macro SIZE 16
 
 //Area Types
 enum A{
@@ -113,6 +120,7 @@ PCOL[P.FORT] = c_red;
 #macro PM global.placementMargin
 
 PM[P.GRASS] = 0;
-PM[P.TREE] = c_green;
-PM[P.HOUSE] = c_yellow;
-PM[P.FORT] = c_red;
+PM[P.TREE] = 0;
+PM[P.HOUSE] = 1;
+PM[P.FORT] = 0;
+#endregion
