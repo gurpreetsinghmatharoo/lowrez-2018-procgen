@@ -1,0 +1,3 @@
+Make everything seem more structured
+
+Add A.TREES area where it's filled with trees and then a path is cut out
