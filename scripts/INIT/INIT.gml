@@ -100,10 +100,10 @@ PS[P.GRASS, MAX_X] = 8;
 PS[P.GRASS, MIN_Y] = 2;
 PS[P.GRASS, MAX_Y] = 8;
 
-PS[P.TREE, MIN_X] = 2;
-PS[P.TREE, MAX_X] = 2;
-PS[P.TREE, MIN_Y] = 2;
-PS[P.TREE, MAX_Y] = 2;
+PS[P.TREE, MIN_X] = 3;
+PS[P.TREE, MAX_X] = 3;
+PS[P.TREE, MIN_Y] = 3;
+PS[P.TREE, MAX_Y] = 3;
 
 PS[P.HOUSE, MIN_X] = 4;
 PS[P.HOUSE, MAX_X] = 4;

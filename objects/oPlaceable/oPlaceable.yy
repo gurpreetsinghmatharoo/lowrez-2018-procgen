@@ -1,14 +1,23 @@
 {
-    "id": "21956bc3-c431-41d6-bb6e-925ec560d094",
+    "id": "08bab7e9-e1d5-4ef0-833b-c09886e9ee33",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "oGrass",
+    "name": "oPlaceable",
     "eventList": [
-        
+        {
+            "id": "d8470d0d-13eb-40a7-bf84-314c05cca1bd",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "08bab7e9-e1d5-4ef0-833b-c09886e9ee33"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "08bab7e9-e1d5-4ef0-833b-c09886e9ee33",
+    "parentObjectId": "00000000-0000-0000-0000-000000000000",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -24,6 +33,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "84d19c22-5df9-40be-b68d-4b81dbd6a891",
+    "spriteId": "00000000-0000-0000-0000-000000000000",
     "visible": true
 }

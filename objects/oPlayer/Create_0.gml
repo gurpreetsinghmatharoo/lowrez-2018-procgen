@@ -50,3 +50,6 @@ state = st.idle;
 //sprites[st.dead, 1] = sPlayer_Dead;
 //sprites[st.dead, 2] = sPlayer_Dead;
 //sprites[st.dead, 3] = sPlayer_Dead;
+
+//Outline
+outline_init();
