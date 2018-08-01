@@ -35,4 +35,4 @@ if (rectangle_in_rectangle(startX, startY, endX, endY, 0, 0, ds_grid_width(grid)
 	return [w, h];
 }
 
-return false;
+return -1;

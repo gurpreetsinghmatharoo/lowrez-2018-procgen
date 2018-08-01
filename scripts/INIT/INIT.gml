@@ -3,6 +3,13 @@ gml_pragma("global", "INIT()");
 #region Main
 //Functions
 #macro log show_debug_message
+
+//Camera
+enum CAM{
+	W = 64,
+	H = 64,
+	SCALE = 10
+}
 #endregion
 
 
@@ -14,9 +21,9 @@ enum pr{
 
 /// Proc Gen
 //Properties
-#macro AREA 2048
-#macro DIVISION 512
-#macro SIZE 16
+#macro AREA 512
+#macro DIVISION 256
+#macro SIZE 12
 
 //Area Types
 enum A{
@@ -123,4 +130,13 @@ PM[P.GRASS] = 0;
 PM[P.TREE] = 0;
 PM[P.HOUSE] = 1;
 PM[P.FORT] = 0;
+
+// Instances for placeables
+#macro PO global.placementObject
+// -1 Fort
+
+PO[P.GRASS] = oGrass;
+PO[P.TREE] = oTree;
+PO[P.HOUSE] = oHouse;
+PO[P.FORT] = -4;
 #endregion

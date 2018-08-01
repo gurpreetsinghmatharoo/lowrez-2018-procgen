@@ -114,6 +114,20 @@ else{
 			}
 		}
 	}
+	
+	//Place instances
+	for(var X = 0; X < gW; X++){
+		for(var Y = 0; Y < gH; Y++){
+			//Get cell
+			var cell = _grid[# X, Y];
+			
+			//Place instances
+			var obj = PO[cell];
+			if (cell>0 && object_exists(obj)){
+				instance_create_layer(_x + X*SIZE, _y + Y*SIZE, "Instances", obj);
+			}
+		}
+	}
 }
 
 //Destroy
