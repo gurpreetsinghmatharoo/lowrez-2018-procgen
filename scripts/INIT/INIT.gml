@@ -12,6 +12,107 @@ enum CAM{
 }
 #endregion
 
+#region Shaders
+//Uniforms
+global.uniHeight = shader_get_uniform(shDepth, "height");
+outline_init();
+#endregion
+
+#region Particles
+//System
+global.pSys = part_system_create();
+
+//Leaf
+global.pLeaf = part_type_create();
+#macro PLEAF global.pLeaf
+
+part_type_sprite(PLEAF, sLeaf, 0, 0, 0);
+part_type_life(PLEAF, 20, 30);
+part_type_orientation(PLEAF, 0, 360, -1, 0, 0); //-1 means to be set beforecreating
+part_type_direction(PLEAF, 0, 360, -1, 0);
+part_type_speed(PLEAF, 0.5, 1, -0.05, 0);
+#endregion
+
+#region Graphics
+//Outlines
+#macro O_NORMAL c_black
+#macro O_SWORD c_black
+#macro O_ENEMY $b21030 //NES Red
+
+//Player sword holding coordinates
+enum SC{
+	X,
+	Y,
+	ANGLE
+}
+#macro SCS global.swordCoords
+
+/// [Direction, Frame]
+//Right
+SCS[0, 0] = [2, 2, 30];
+SCS[0, 1] = [2, 3, 0];
+SCS[0, 2] = [2, 3, -30];
+SCS[0, 3] = [0, 4, -60];
+
+//Up
+SCS[1, 0] = [-2, -3, 135];
+SCS[1, 1] = [4, -3, 90];
+SCS[1, 2] = [5, 0, 45];
+SCS[1, 3] = [6, 1, 0];
+
+//Left
+SCS[2, 0] = [-3, 2, 210];
+SCS[2, 1] = [-3, 1, 180];
+SCS[2, 2] = [-3, -1, 150];
+SCS[2, 3] = [0, -2, 120];
+
+//Down
+SCS[3, 0] = [-1, 3, -45];
+SCS[3, 1] = [-3, 3, -90];
+SCS[3, 2] = [-4, 3, -135];
+SCS[3, 3] = [-6, 2, 180];
+
+/// Sword sprites
+#macro swSpr global.swordSprites
+swSpr[sword.basic] = sSwordBasic;
+#endregion
+
+#region Input
+//Keyboard inputs
+#macro A_KEY "E"
+#macro B_KEY "N"
+#macro X_KEY "M"
+#macro R2_VKEY vk_shift
+
+//Variables
+global.APressed = 0;
+global.BPressed = 0;
+global.XPressed = 0;
+global.downHoldTime = 0;
+global.horHoldTime = 0;
+global.axisDirOn = 0;
+#endregion
+
+#region Inventory
+//Contents
+#macro SWORD 0
+#macro BOW 1
+
+//Swords
+enum sword{
+	basic
+}
+
+//Sword states
+enum swst{
+	attack,
+	speed
+}
+
+#macro swStats global.swordStats
+swStats[sword.basic, swst.attack] = 1;
+swStats[sword.basic, swst.speed] = 1;
+#endregion
 
 #region Proc Gen
 //Array contents

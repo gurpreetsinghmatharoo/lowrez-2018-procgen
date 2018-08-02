@@ -3,11 +3,11 @@ switch (state){
 	case st.idle: case st.move:
 		//Input
 		var inputX, inputY;
-		inputX = (keyboard_check(ord("D")) || keyboard_check(vk_right)) - (keyboard_check(ord("A")) || keyboard_check(vk_left));
-		inputY = (keyboard_check(ord("S")) || keyboard_check(vk_down)) - (keyboard_check(ord("W")) || keyboard_check(vk_up));
+		inputX = global.hor;
+		inputY = global.ver;
 		
-		var run = keyboard_check(vk_shift) && stamina>0;
-		var attack = keyboard_check_pressed(vk_space);
+		var run = global.run && stamina>0;
+		var attack = global.Bkey;
 
 		//Movement
 		moveX = inputX * moveSpeed * (1+run*runSpeed) + round(boostX);
@@ -54,12 +54,14 @@ switch (state){
 		//mask_index = sPlayer_Mask;
 		
 		//Direction
-		if (state==st.move) moveDir = point_direction(0, 0, moveX, moveY) div 90;
+		if (abs(inputX) || abs(inputY)) moveDir = point_direction(0, 0, inputX, inputY) div 90;
 		
 		//Attack
-		//if (attack){
-		//	state_set(st.attack);
-		//}
+		if (attack && inv[SWORD]>=0){
+			state_set(st.attack);
+			state_sword(inv[SWORD]);
+			move_sword();
+		}
 		
 		//Enemy Collision
 		//var enemy = instance_place(x, y, oEnemies);
@@ -85,8 +87,23 @@ switch (state){
 	break;
 	
 	case st.attack:
-		image_speed = 1;
-		mask_index = sprite_index;
+		move_sword();
+		
+		//End
+		if (animation_end()){
+			state_set(st.idle);
+			image_speed = 0;
+			instance_destroy(mySword);
+		}
+	break;
+	
+	case st.dead:
+		if (animation_end()){
+			image_speed = 0;
+			image_index = image_number-1;
+		
+			alarm[0] = 60;
+		}
 	break;
 }
 
@@ -100,7 +117,7 @@ switch (state){
 //}
 
 //Sprite
-//sprite_index = sprites[state, moveDir];
+sprite_index = sprites[state, moveDir];
 
 //Boost
 boostX = lerp(boostX, 0, 0.1);

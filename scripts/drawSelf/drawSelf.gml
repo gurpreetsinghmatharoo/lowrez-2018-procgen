@@ -1,0 +1,2 @@
+setHeight();
+draw_self();

@@ -1,12 +1,14 @@
-To-do next:
+• • Queue • •
 
-Loop through grid again and place instances
+Sword
+
+Environment (Tiles, Grass)
+
+Enemies
+
+Level/XP
 
 • • Main • •
-
-- Important:
-
-No grids should be kept in the memory; should be destroyed in grid_populate() after creating instances/sub-grids
 
 - Tilesets:
 
@@ -18,6 +20,8 @@ Make everything seem more structured
 
 Add A.TREES area where it's filled with trees and then a path is cut out
 
-- Graphics:
+• • Sounds • •
 
-Z-buffer depth
+Sword swing
+
+Bush cut
