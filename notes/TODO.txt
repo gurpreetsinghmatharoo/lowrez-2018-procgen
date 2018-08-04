@@ -1,12 +1,14 @@
 • • Queue • •
 
-Sword
-
-Environment (Tiles, Grass)
-
 Enemies
+	Different enemy types but one object
+	Store the enemies's sprites in an array that holds all 2D arrays
+	Enemies placed have a level equal to or lower than the player's
+	They have weapons with levels equal to or lower than their's
 
-Level/XP
+Engaging world
+
+NPCs
 
 • • Main • •
 
@@ -18,7 +20,37 @@ Store tilemap for each area in a DS map and use the correct one for collisions
 
 Make everything seem more structured
 
-Add A.TREES area where it's filled with trees and then a path is cut out
+Add A.FOREST area where it's filled with trees and then a path is cut out
+
+- Graphics:
+
+Day-night cycle!
+
+Pass the area type (A) to the placeable objects, mainly for placing snowy trees in cold areas
+
+Snowfall when inside A.COLD
+
+- World:
+
+Random enemy bonfires
+
+Chests with items
+
+Grasses drop collectibles
+
+Wild animals give items
+
+Houses have doors
+
+- GUI:
+
+Help controls that change to controller or keyboard type
+
+- Production:
+
+Remove R shortcut
+Remove zooming
+Change stamina to 100
 
 • • Sounds • •
 

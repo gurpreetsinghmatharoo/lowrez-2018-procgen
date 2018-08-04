@@ -6,7 +6,9 @@ moveDelay = 2;
 
 runSpeed = 32; //Debugging
 
-moveDir = 0;
+moveDir = 3;
+
+kbSpeed = 6;
 
 //Variables
 moveX = 0;
@@ -15,17 +17,24 @@ moveY = 0;
 boostX = 0;
 boostY = 0;
 
-//Health
-hp = 100;
-stamina = 100000000; //Debugging
-staminaRefill = 0;
+whiteAlpha = 0;
+
+//Hurt cooldown
+hurtCD = 0;
+hurtCooldown = 20;
+
+//For HUD
+stopTime = 0;
+moveTime = 0;
 
 //Stats
-attack = 1;
-defense = 1;
+stats_init();
 
 //Inventory
-inventory_init(sword.basic);
+inventory_init();
+
+//Level
+levels_init();
 
 //States
 enum st{

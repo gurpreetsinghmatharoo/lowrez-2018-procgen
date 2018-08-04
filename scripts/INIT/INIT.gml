@@ -10,6 +10,10 @@ enum CAM{
 	H = 64,
 	SCALE = 10
 }
+
+//Leveling
+global.xpBase = 100;
+global.xpAdd = 50;
 #endregion
 
 #region Shaders
@@ -37,44 +41,8 @@ part_type_speed(PLEAF, 0.5, 1, -0.05, 0);
 //Outlines
 #macro O_NORMAL c_black
 #macro O_SWORD c_black
+#macro O_HIGHLIGHT c_white
 #macro O_ENEMY $b21030 //NES Red
-
-//Player sword holding coordinates
-enum SC{
-	X,
-	Y,
-	ANGLE
-}
-#macro SCS global.swordCoords
-
-/// [Direction, Frame]
-//Right
-SCS[0, 0] = [2, 2, 30];
-SCS[0, 1] = [2, 3, 0];
-SCS[0, 2] = [2, 3, -30];
-SCS[0, 3] = [0, 4, -60];
-
-//Up
-SCS[1, 0] = [-2, -3, 135];
-SCS[1, 1] = [4, -3, 90];
-SCS[1, 2] = [5, 0, 45];
-SCS[1, 3] = [6, 1, 0];
-
-//Left
-SCS[2, 0] = [-3, 2, 210];
-SCS[2, 1] = [-3, 1, 180];
-SCS[2, 2] = [-3, -1, 150];
-SCS[2, 3] = [0, -2, 120];
-
-//Down
-SCS[3, 0] = [-1, 3, -45];
-SCS[3, 1] = [-3, 3, -90];
-SCS[3, 2] = [-4, 3, -135];
-SCS[3, 3] = [-6, 2, 180];
-
-/// Sword sprites
-#macro swSpr global.swordSprites
-swSpr[sword.basic] = sSwordBasic;
 #endregion
 
 #region Input
@@ -103,15 +71,62 @@ enum sword{
 	basic
 }
 
+//Bows
+enum bow{
+	
+}
+
 //Sword states
 enum swst{
+	sprite,
+	
+	level,
+	
 	attack,
 	speed
 }
 
 #macro swStats global.swordStats
-swStats[sword.basic, swst.attack] = 1;
+swStats[sword.basic, swst.sprite] = sSwordBasic
+swStats[sword.basic, swst.level] = 1;
+swStats[sword.basic, swst.attack] = 50;
 swStats[sword.basic, swst.speed] = 1;
+
+#macro bwStats global.bowStats
+
+
+//Player sword holding coordinates
+enum SC{
+	X,
+	Y,
+	ANGLE
+}
+#macro SCS global.swordCoords
+
+/// [Direction, Frame]
+//Right
+SCS[0, 0] = [2, 2, 30];
+SCS[0, 1] = [2, 3, 0];
+SCS[0, 2] = [2, 3, -30];
+SCS[0, 3] = [0, 4, -60];
+
+//Up
+SCS[1, 0] = [-2, -3, 135];
+SCS[1, 1] = [3, -3, 90];
+SCS[1, 2] = [5, 0, 45];
+SCS[1, 3] = [6, 1, 0];
+
+//Left
+SCS[2, 0] = [-3, 2, 210];
+SCS[2, 1] = [-3, 1, 180];
+SCS[2, 2] = [-3, -1, 150];
+SCS[2, 3] = [0, -2, 120];
+
+//Down
+SCS[3, 0] = [-1, 3, -45];
+SCS[3, 1] = [-3, 3, -90];
+SCS[3, 2] = [-4, 3, -135];
+SCS[3, 3] = [-6, 2, 180];
 #endregion
 
 #region Proc Gen
@@ -136,6 +151,20 @@ enum A{
 	
 	COUNT
 }
+
+//Area climate
+enum CL{
+	NORMAL,
+	
+	COLD,
+	//DESERT,
+	//BEACH
+	
+	COUNT
+}
+
+#macro CLC global.climateChance
+CLC[CL.COLD] = 40;
 
 //Placement types (priority matters)
 enum P{
@@ -162,6 +191,7 @@ AC[A.EMPTY] = 0;
 AC[A.LAND] = 20;
 AC[A.VILLAGE] = 60;
 AC[A.HOSTILE] = 30;
+AC[A.COUNT] = 101;
 
 /// Chances for placeables
 #macro PC global.placementChance
@@ -239,5 +269,5 @@ PM[P.FORT] = 0;
 PO[P.GRASS] = oGrass;
 PO[P.TREE] = oTree;
 PO[P.HOUSE] = oHouse;
-PO[P.FORT] = -4;
+PO[P.FORT] = noone;
 #endregion

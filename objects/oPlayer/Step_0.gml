@@ -6,7 +6,7 @@ switch (state){
 		inputX = global.hor;
 		inputY = global.ver;
 		
-		var run = global.run && stamina>0;
+		var run = global.runHold && stamina>0;
 		var attack = global.Bkey;
 
 		//Movement
@@ -63,17 +63,6 @@ switch (state){
 			move_sword();
 		}
 		
-		//Enemy Collision
-		//var enemy = instance_place(x, y, oEnemies);
-		
-		//if (enemy && enemy.state==st.attack){
-		//	var dir = point_direction(enemy.x, enemy.y, x, y);
-		//	boostX = lengthdir_x(8, dir);
-		//	boostY = lengthdir_y(8, dir);
-			
-		//	hp -= enemy.attack;
-		//}
-		
 		//Stamina
 		if (run){
 			stamina-=2;
@@ -116,6 +105,16 @@ switch (state){
 //	moveDir = 1;
 //}
 
+//Stop time
+if (state==st.idle){
+	stopTime++;
+	moveTime = 0;
+}
+else{
+	moveTime++;
+	stopTime = 0;
+}
+
 //Sprite
 sprite_index = sprites[state, moveDir];
 
@@ -125,6 +124,15 @@ boostY = lerp(boostY, 0, 0.1);
 
 //Move CD
 moveCD -= moveCD>0;
+
+//White alpha
+whiteAlpha -= (whiteAlpha > 0)/10;
+
+//Hurt CD
+hurtCD -= hurtCD>0;
+
+//Get hurt
+getHurt();
 
 //Die
 if (hp<=0 && state!=st.dead){

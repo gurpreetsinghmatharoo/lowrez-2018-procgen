@@ -11,7 +11,7 @@ areaXReal = areaX*AREA;
 areaYReal = areaY*AREA;
 
 //New area generation
-var marg = 64; //Margin
+var marg = 32; //Margin
 var cX = oPlayer.x - CAM.W/2, cY = oPlayer.y - CAM.H/2;
 
 //If, including margin, the camera intersects the boundary, generate new area
@@ -45,6 +45,50 @@ if (rectangle_in_rectangle(cX-marg, cY-marg, cX+CAM.W+marg, cY+CAM.H+marg,
 }
 
 
+#endregion
+
+#region Changing area
+if (areaX != areaPrevX || areaY != areaPrevY){
+	var arr = layers_get(areaX, areaY);
+	global.Tile_Back = layer_get_name(arr[0]);
+	global.Tiles_Back = arr[1];
+	global.Tile_Walls = layer_get_name(arr[2]);
+	global.Tiles_Walls = arr[3];
+}
+#endregion
+
+#region Levels
+//Leveling up
+with (oPlayer){
+	global.reqXP = global.xpBase + ((level-1)*global.xpAdd);
+	
+	if (xp >= global.reqXP){
+		//Decrease xp
+		xp -= global.reqXP;
+		
+		//Increase level
+		level++;
+	}
+}
+#endregion
+
+#region HUD
+//Lerp ys
+var dist = CAM.H/2;
+var spd = 0.1 * (1 + !hideHUD);
+y1 = lerp(y1, -dist*hideHUD, 0.05 * (1 + !hideHUD*4));
+y2 = lerp(y2, CAM.H+dist*hideHUD, 0.05 * (1 + !hideHUD*4));
+
+//Hide
+if (global.showTime || oPlayer.stopTime > 15){
+	hideHUD = false;
+}
+else if (oPlayer.moveTime > 15){
+	hideHUD = true;
+}
+
+//Show time cooldown
+global.showTime -= global.showTime > 0;
 #endregion
 
 #region Shortcuts

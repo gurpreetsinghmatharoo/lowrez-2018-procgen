@@ -3,6 +3,8 @@
 /// @arg OPTIONAL_sprite
 /// @arg OPTIONAL_accuracy
 /// @arg OPTIONAL_tolerance
+/// @arg OPTIONAL_whiteAlpha
+
 var _spr;
 if (argument_count<=2) _spr = sprite_index;
 else _spr = argument[2];
@@ -31,6 +33,8 @@ if (argument_count<=4) tol = 0;
 else tol = argument[4];
 
 shader_set_uniform_f(uni_tol, tol);
+
+shader_set_uniform_f(uni_white, argument_count > 5 ? argument[5] : 0);
 
 var uvs = sprite_get_uvs(_spr, image_index);
 
