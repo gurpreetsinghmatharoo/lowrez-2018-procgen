@@ -1,11 +1,11 @@
 /// @description 
 randomize();
 //application_surface_draw_enable(false);
-//show_debug_overlay(1);
+show_debug_overlay(1);
 
 #region Main
 //Depth Manager
-instance_create_layer(0, 0, "Instances", oDepth);
+depthManager = instance_create_layer(0, 0, "Instances", oDepth);
 
 //Create layers DS Map
 global.layers = ds_map_create();
@@ -55,9 +55,6 @@ do{
 until(!collision_rectangle(_x-marg, _y-marg, _x+marg, _y+marg, oPlaceable, 0, 0))
 
 item_place(_x, _y, SWORD, sword.basic);
-
-//Test enemy
-instance_create_layer(_x, _y-32, "Instances", oEnemy);
 #endregion
 
 #region Camera
@@ -69,7 +66,7 @@ if (cameraEnabled){
 	
 	var width = CAM.W, height = CAM.H, scale = CAM.SCALE;
 
-	var cam = camera_create_view(0, 0, width, height, 0, -1, -1, -1, width/2, height/2);
+	var cam = camera_create_view(oPlayer.x - CAM.W/2, oPlayer.y - CAM.H/2, width, height, 0, -1, -1, -1, width/2, height/2);
 	view_set_camera(0, cam);
 
 	window_set_size(width*scale, height*scale);

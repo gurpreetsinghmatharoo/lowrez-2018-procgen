@@ -37,13 +37,6 @@ inventory_init();
 levels_init();
 
 //States
-enum st{
-	idle,
-	move,
-	attack,
-	dead
-}
-
 state = st.idle;
 
 //Sprites
@@ -62,10 +55,10 @@ sprites[st.attack, 1] = sPlayer_Attack_Up;
 sprites[st.attack, 2] = sPlayer_Attack_Left;
 sprites[st.attack, 3] = sPlayer_Attack_Down;
 
-//sprites[st.dead, 0] = sPlayer_Dead;
-//sprites[st.dead, 1] = sPlayer_Dead;
-//sprites[st.dead, 2] = sPlayer_Dead;
-//sprites[st.dead, 3] = sPlayer_Dead;
+sprites[st.dead, 0] = sPlayer_Dead;
+sprites[st.dead, 1] = sPlayer_Dead;
+sprites[st.dead, 2] = sPlayer_Dead;
+sprites[st.dead, 3] = sPlayer_Dead;
 
 //Outline
 outline_set(1, O_NORMAL);

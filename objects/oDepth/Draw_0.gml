@@ -11,7 +11,7 @@ var camX2 = camX1 + camera_get_view_width(view_camera) + camMarg*2;
 var camY2 = camY1 + camera_get_view_height(view_camera) + camMarg*2;
 
 with (all){
-	if (visible && sprite_exists(sprite_index) 
+	if (visible && sprite_exists(sprite_index)
 		&& rectangle_in_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, camX1, camY1, camX2, camY2)){ //Is it in view?
 		ds_list_add(dpList, id | (bbox_bottom << 32));
 	}

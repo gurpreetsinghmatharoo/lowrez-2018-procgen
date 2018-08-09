@@ -96,4 +96,14 @@ global.showTime -= global.showTime > 0;
 if (keyboard_check_pressed(ord("R"))){
 	room_restart();
 }
+
+//HQ
+if (keyboard_check_pressed(ord("H"))){
+	if (surface_get_width(application_surface)==CAM.W){
+		surface_resize(application_surface, CAM.W*CAM.SCALE, CAM.H*CAM.SCALE);
+	}
+	else{
+		surface_resize(application_surface, CAM.W, CAM.H);
+	}
+}
 #endregion

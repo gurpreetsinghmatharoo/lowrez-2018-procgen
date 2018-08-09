@@ -1,4 +1,10 @@
 /// @description 
+//Enemy vars
+leader = noone;
+
+detectRange = 24;
+detectAngle = 80;
+
 //Properties
 moveSpeed = 1;
 moveCD = 0;
@@ -16,6 +22,9 @@ moveY = 0;
 
 boostX = 0;
 boostY = 0;
+
+targetX = undefined;
+targetY = undefined;
 
 whiteAlpha = 0;
 

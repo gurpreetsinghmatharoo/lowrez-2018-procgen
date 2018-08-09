@@ -54,7 +54,7 @@ switch (state){
 		//mask_index = sPlayer_Mask;
 		
 		//Direction
-		if (abs(inputX) || abs(inputY)) moveDir = point_direction(0, 0, inputX, inputY) div 90;
+		if (abs(inputX) || abs(inputY)) moveDir = round(point_direction(0, 0, inputX, inputY)/90) mod 4;
 		
 		//Attack
 		if (attack && inv[SWORD]>=0){

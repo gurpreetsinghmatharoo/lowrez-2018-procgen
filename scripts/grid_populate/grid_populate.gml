@@ -193,6 +193,71 @@ else{
 			}
 		}
 	}
+	
+	//Enemy groups to place
+	var enemyCount = irandom_range(1, 3);
+	var maxGroupSize = floor(irandom_range(6, 12)/max(enemyCount, 1));
+	var dist = 16;
+	var baseDist = dist;
+	
+	var count = 0;
+	
+	do{
+		//Group position
+		do {
+			var eX = irandom_range(0, gW);
+			var eY = irandom_range(0, gH);
+			
+			var rX = (_x + eX*SIZE) + SIZE/2;
+			var rY = (_y + eY*SIZE) + SIZE/2;
+		} until (point_distance(rX, rY, oPlayer.x, oPlayer.y) > CAM.W)
+		
+		//Type
+		var type;
+		switch(orgType){
+			
+			default: type = enemy.bandit; //For now
+		}
+		
+		//Create
+		var groupSize = irandom_range(1, maxGroupSize);
+		var insts = [];
+		for(var i=0; i<groupSize; i++){
+			insts[i] = noone;
+			dist = baseDist;
+			
+			//Select enemy position
+			var tries = 0;
+			do {
+				var xx = rX + lengthdir_x(dist, random(360));
+				var yy = rY + lengthdir_y(dist, random(360));
+				
+				//Make sure the loop doesn't go infinite - expand the range or end the loop
+				tries++;
+				if (tries > 10) dist += 4;
+				//if (tries > 16) break;
+			} until (!collision_circle(xx, yy, 4, oEnemy, 0, 0) && !collision_circle(xx, yy, 4, oCollision, 0, 0));
+			
+			var inst = spawnEnemy(xx, yy, type, oPlayer.level, act.roam);
+			insts[i] = inst;
+			
+			/// Set loadout
+			//Sword
+			inst.inv[SWORD] = sword_level_range(max(1, oPlayer.level-5), oPlayer.level);
+		}
+		
+		//Select leader
+		do {
+			var leader = insts[irandom(groupSize-1)];
+		} until (instance_exists(leader))
+		
+		for(var i=0; i<groupSize; i++){
+			if (instance_exists(insts[i]) && insts[i] != leader) insts[i].leader = leader;
+		}
+		
+		//Increase count
+		count++;
+	} until (count>=enemyCount);
 }
 
 //Destroy

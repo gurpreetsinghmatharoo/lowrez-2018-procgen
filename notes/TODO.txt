@@ -1,14 +1,18 @@
 • • Queue • •
 
 Enemies
-	Different enemy types but one object
-	Store the enemies's sprites in an array that holds all 2D arrays
-	Enemies placed have a level equal to or lower than the player's
-	They have weapons with levels equal to or lower than their's
+	Move in groups with collision
 
-Engaging world
+Chests
+
+Give player XP
+
+Forts
+	Soldier enemies
 
 NPCs
+
+Forests
 
 • • Main • •
 
@@ -42,13 +46,22 @@ Wild animals give items
 
 Houses have doors
 
+- Enemies:
+
+Enemies perform activities
+
+Forts have soldier enemies
+Others have bandits
+
 - GUI:
 
 Help controls that change to controller or keyboard type
 
+New item glows white-black-white-black
+
 - Production:
 
-Remove R shortcut
+Remove shortcuts
 Remove zooming
 Change stamina to 100
 
@@ -57,3 +70,5 @@ Change stamina to 100
 Sword swing
 
 Bush cut
+
+Item get! (sword, etc.)

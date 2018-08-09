@@ -14,6 +14,21 @@ enum CAM{
 //Leveling
 global.xpBase = 100;
 global.xpAdd = 50;
+
+//Stats
+enum st{
+	//Basic
+	idle,
+	move,
+	attack,
+	dead
+}
+
+//Activities
+enum act{
+	roam,
+	guard
+}
 #endregion
 
 #region Shaders
@@ -68,12 +83,14 @@ global.axisDirOn = 0;
 
 //Swords
 enum sword{
-	basic
+	basic,
+	
+	count
 }
 
 //Bows
 enum bow{
-	
+	count
 }
 
 //Sword states
@@ -127,6 +144,49 @@ SCS[3, 0] = [-1, 3, -45];
 SCS[3, 1] = [-3, 3, -90];
 SCS[3, 2] = [-4, 3, -135];
 SCS[3, 3] = [-6, 2, 180];
+#endregion
+
+#region Enemies
+//Types
+enum enemy{
+	bandit
+}
+
+//Stats
+#macro enmSt global.enemyStats
+enum enmst{
+	sprites,
+	attack,
+	defense
+}
+
+//Bandit
+#region Sprites
+var sprites;
+sprites[st.idle, 0] = sBandit_Idle_Right;
+sprites[st.idle, 1] = sBandit_Idle_Up;
+sprites[st.idle, 2] = sBandit_Idle_Left;
+sprites[st.idle, 3] = sBandit_Idle_Down;
+
+sprites[st.move, 0] = sBandit_Move_Right;
+sprites[st.move, 1] = sBandit_Move_Up;
+sprites[st.move, 2] = sBandit_Move_Left;
+sprites[st.move, 3] = sBandit_Move_Down;
+
+sprites[st.attack, 0] = sBandit_Attack_Right;
+sprites[st.attack, 1] = sBandit_Attack_Up;
+sprites[st.attack, 2] = sBandit_Attack_Left;
+sprites[st.attack, 3] = sBandit_Attack_Down;
+
+sprites[st.dead, 0] = sBandit_Dead;
+sprites[st.dead, 1] = sBandit_Dead;
+sprites[st.dead, 2] = sBandit_Dead;
+sprites[st.dead, 3] = sBandit_Dead;
+#endregion
+
+enmSt[enemy.bandit, enmst.sprites] = sprites;
+enmSt[enemy.bandit, enmst.attack] = 1;
+enmSt[enemy.bandit, enmst.defense] = 1;
 #endregion
 
 #region Proc Gen

@@ -5,6 +5,6 @@ attack = 1;
 defense = 1;
 
 //Health
-hp = 100;
+hp = 100000000; //Test
 stamina = 100000000; //Test
 staminaRefill = 0;
